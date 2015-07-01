@@ -1,2 +1,2 @@
-# tesi-tex
+# tesi
 Il latex della mia tesi
