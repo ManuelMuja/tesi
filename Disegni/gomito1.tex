@@ -1,0 +1,47 @@
+\begin{tikzpicture}[%
+molla/.style={decorate,decoration={snake,post length=5,amplitude=5,pre length=5,segment length=5}, thick},
+thick%
+]
+\sffamily \sansmath
+%	\draw [help lines] (0, 0) grid (8, 8);
+	
+	\draw (0:0) -- (0:5);
+	
+%	\draw (0, 3) circle (0.3)
+%		node {$\bullet$};
+%	\draw (0, 3) -- (4, 0);
+	\draw (0, 0) circle (0.3)
+		node {$\bullet$};
+	\draw (30:5) circle (0.3)
+		node {$\bullet$};
+		
+	\draw (0, 0) -- (30:5);
+	\draw (30:5) -- ++(45:2);
+	\draw (4.5, 3) -- ++(45:1.5);
+
+	\node [] at (25:5.3) {P};
+	\node [] at (-0.5, 0) {G};
+	\node [] at (5.0, 4) {C};
+
+	\draw [->, dotted, thin] (0:5) -- (0:8)
+		node [pos=1, above] {$x_{0}$};
+	\draw [->, dotted, thin] (90:0) -- ++(90:3)
+		node [pos=1, left] {$y_{0}$};
+
+	\draw [->, dotted, thin] (30:5) -- ++(30:3)
+		node [pos=1, above] {$x_{1}$};
+	\draw [->, dotted, thin] (0:0) -- (30+90:3)
+		node [pos=1, left] {$y_{1}$};
+
+	\draw [->, dotted, thin] (30:5) -- ++(45:5)
+		node [pos=1, above] {$x_{2}$};
+	\draw [->, dotted, thin] (30:5) -- ++(45+90:3)
+		node [pos=1, left] {$y_{2}$};
+
+	\draw [->, dotted, thin] (4.5, 3) -- ++(45:3)
+		node [pos=1, above] {$y_{3}$};
+	\draw [->, dotted, thin] (5.0, 3.5) -- ++(45+90:3)
+		node [pos=1, left] {$z_{3}$};
+
+  \end{tikzpicture}
+ 

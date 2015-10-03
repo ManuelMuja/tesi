@@ -1,0 +1,92 @@
+	\begin{tikzpicture}
+\relsize{-1}
+\node (nSDA1) at (-3,1) {};
+\node (nSCL1) at (-3,-1) {};
+\node (nSDA2) at (3,1) {};
+\node (nSCL2) at (3,-1) {};
+\node (nCondens1) at (0,1) {};
+\node (nCondens2) at (0,-1) {};
+\node (nPullUp1) at (-1,1) {};
+\node (nPullUp2) at (1,-1) {};
+\node (nFinto1) at (1,1) {};
+\node (nFinto2) at (-1,-1) {};
+\node (nAlimPullUp1) at (-1, 3) {};
+\node (nAlimPullUp2) at (1, 3) {};
+\node (nAlim1) at (-3, 3) {};
+\node (nAlim2) at (3, 3) {};
+\node (nMassaCap1) at (-1, -3) {};
+\node (nMassaCap2) at (1, -3) {};
+\node (nMassa1) at (-3, -3) {};
+\node (nMassa2) at (3, -3) {};
+\node (nSDAin1) at (-6, 1) {};
+\node (nSDAout1) at (-6, 0) {};
+\node (nSCLin1) at (-6, -1) {};
+\node (nSCLout1) at (-6, -2) {};
+\node (nSDAin2) at (6, 1) {};
+\node (nSDAout2) at (6, 0) {};
+\node (nSCLin2) at (6, -1) {};
+\node (nSCLout2) at (6, -2) {};
+
+%	
+%	Resistenze in serie
+\draw (nSDA1) to [resistor, l^=$R_{S11}$, o-, n=r11] (nPullUp1)
+      (nSCL1) to [resistor, l^=$R_{S21}$, o-, n=r21] (nFinto2)
+      (nFinto1) to [resistor, l^=$R_{S12}$, -o, n=r12] (nSDA2)
+      (nPullUp2) to [resistor, l^=$R_{S22}$, -o, n=r22] (nSCL2);
+%	
+%	Resistori in parallelo
+\draw (nAlimPullUp1) to [resistor, l^=$R_{P1}$, n=rp1] (nPullUp1)
+      (nAlimPullUp2) to [resistor, l^=$R_{P2}$, n=rp1] (nFinto1);
+%	
+%	Condensatori
+\draw (nCondens1) to [capacitor, *-*, n=cc] (nCondens2) 
+      (nFinto1) to [short] (nPullUp2) to [capacitor, l^=$C_{P2}$, n=cp2] (nMassaCap2)
+      (nPullUp1) to [short] (nFinto2) to [capacitor, l^=$C_{P1}$, n=cp2] (nMassaCap1);
+\node at (.5,-.5) {$C_C$};
+%	
+%	Transistori
+\draw (-3.5,-1) to [Tnmos=11, n=mos11] ++(0, 2)
+	  (-4,-3) to [Tnmos=21, n=mos21] ++(0, 2);
+\draw (3.5, 1) to [Tnmos=12, n=mos12] ++(0, -2)
+	  (4,-1) to [Tnmos=22, n=mos22] ++(0, -2);
+%	
+%	Cortocircuiti
+\draw (nPullUp1) to [short, *-] (nFinto1)
+	  (nFinto2) to [short, -*] (nPullUp2);
+\draw (-6,-3) to [short, -*] (-4,-3)
+	  to [short] (nMassa1)
+      to [short, o-*] (nMassaCap1)
+	  to [short] (nMassaCap2)
+      to [short, *-o] (nMassa2)
+      to [short] (4,-3)
+      to [short, *-] (6,-3);
+\draw (-6, 3) to [short] (nAlim1)
+	  to [short, o-*] (nAlimPullUp1) 
+	  to [short] (nAlimPullUp2)
+      to [short, *-o] (nAlim2) to [short] (6,3);
+\draw (-3.5, -1) to [short, -*] ++(0,-2);
+\draw (3.5, -1) to [short, -*] ++(0,-2);
+\node (alim) [rground, yscale=-1] at (0, 3) {};
+  \node [right] at (0,3.5) {$V_{CC}$};
+\node (massa) [cground] at (0, -3) {};
+%	
+%	Segnali
+\draw (nSDA1) to [short, -*] ++(-.5,0) to [short] (-5,1) to [short, i_=$SDA\,in$] (nSDAin1);
+\draw (nSDAout1) to [short, i^=$SDA\,out$] (-5,0) to [short] (mos11.G);
+\draw (nSCL1) to [short, -*] ++(-1,0) to [short] (-5,-1) to [short, i_=$SCL\,in$] (nSCLin1);
+\draw (nSCLout1) to [short, i^=$SCL\,out$] (-5,-2) to [short] (mos21.G);
+%	
+\draw (nSDA2) to [short, -*] ++(.5,0) to [short] (5,1) to [short, i=$SDA\,in$] (nSDAin2);
+\draw (nSDAout2) to [short, i_=$SDA\,out$] (5,0) to [short] (mos12.G);
+\draw (nSCL2) to [short, -*] ++(1,0) to [short] (5,-1) to [short, i^=$SCL\,in$] (nSCLin2);
+\draw (nSCLout2) to [short, i_=$SCL\,out$] (5,-2) to [short] (mos22.G);
+%	
+%	Riquadri
+\draw [dashed] (-6, 3.3) -| (-3,0)
+				node [above, pos=.25] {Dispositivo 1}
+               |- (-6,-3.3);
+\draw [dashed] (6, 3.3) -| (3,0)
+				node [above, pos=.25] {Dispositivo 2}
+			   |- (6,-3.3);
+
+	\end{tikzpicture}

@@ -1,0 +1,283 @@
+\documentclass [10pt, a4paper, onecolumn, oneside] {scrreprt}
+\usepackage[italian, english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+
+%% Matematica
+\usepackage{amsmath, amssymb}
+\usepackage{xfrac}
+\usepackage{units}
+\usepackage{sansmath}
+
+
+%%% PAGE DIMENSIONS
+\usepackage{geometry} % to change the page dimensions
+%\geometry{margins=2in} % for example, change the margins to 2 inches all round
+%\geometry{landscape} % set up the page for landscape
+% read geometry.pdf for detailed page layout information
+%\usepackage{layaureo}
+\usepackage{indentfirst}
+%\usepackage{booklet}
+\usepackage{lscape}
+
+
+%% Note a fine capitolo
+\usepackage{endnotes}
+\numberwithin{endnote}{chapter}
+\renewcommand{\theendnote}{(\roman{endnote})}
+\renewcommand{\notesname}{Note}
+\usepackage[stable]{footmisc}
+
+%% Testatine
+\usepackage{scrhack}
+\pagestyle{headings}
+%\usepackage[Lenny]{fncychap}
+
+%% Biliografia
+% citare usando `` \footnote{ \cite{cit:key}}}''
+\usepackage{natbib}
+%\usepackage[style=alphabetic]{biblatex}
+
+%% Disegno
+\usepackage{float}
+\usepackage[center]{caption}
+  \captionsetup{format=hang,labelfont={sf,bf},font=small}
+\usepackage{subcaption}
+\usepackage{sidecap}
+\usepackage[siunitx]{circuitikz}
+  \usetikzlibrary{decorations.pathmorphing,calc,3d, patterns}
+  \usetikzlibrary{circuits}
+\usepackage{pdfpages}
+\usepackage{pgfplots}
+  \pgfplotsset{/pgf/number format/use comma,compat=newest}
+%\usepackage[pdftex]{graphicx}
+\usepackage{qtree} % dendrogammi U_U
+
+%% Codice
+\usepackage{listings}
+\addto\captionsitalian{%
+\renewcommand{\lstlistingname}{Codice}}
+\addto\captionsitalian{%
+\renewcommand{\lstlistlistingname}{Elenco dei codici}}
+\lstset{numbers=left, numberstyle=\tiny, stepnumber=1}
+
+%% Faccine
+\usepackage {MnSymbol, wasysym, marvosym}
+
+%% Altri simboli
+\usepackage{textcomp, wasysym}
+\usepackage{cancel}
+\usepackage{cases}% http://ctan.org/pkg/cases
+\usepackage{framed}
+
+%% Acronimi
+\usepackage[smaller,printonlyused,withpage]{acronym}
+ \acrodef{iic}[I$^2$C]{Inter-Integrated Circuit}
+%  {\small Protocollo di comunicazione seriale \par}
+ \acrodef{svm}[SVM]{Support Vector Machine}
+%  {\small Macchina a vettori di supporto \par}
+ \acrodef{spra}[SPRA]{Simple Pattern Recognition Algorithm}
+ \acrodef{rbfk}[RBFK]{Radial Basis Function Kernel}
+ 
+%% Sommario e abstract
+\newenvironment{abstracts}
+{\titlepage\vspace*{\fill}}
+{\vspace*{\fill}\endtitlepage}
+\renewenvironment{abstract}
+{\vspace*{\fill}
+\begin{center}\bfseries\abstractname\end{center}%
+\quotation}
+{\endquotation\vspace*{\fill}}
+
+%% Togliere le scritte "capitolo" e altro 
+\makeatletter	% NON commentare!
+%\def\@makechapterhead#1{%
+%  \vspace*{50\p@}%
+%  {\parindent \z@ \raggedright \normalfont
+%    \vskip 20\p@
+%    \interlinepenalty\@M
+%    \Huge \bfseries #1\par\nobreak
+%    \vskip 40\p@
+%  }}
+\makeatother	% NON commentare!
+
+%% Collegamenti ipertestuali
+\usepackage{xcolor}
+\usepackage{hyperref}
+\hypersetup{
+pdfauthor={Manuel Iurissevich},%
+pdftitle={Valutazione gesti motori},%
+pdfstartpage=5, pdfstartview=FitV,%
+	colorlinks,
+	linkcolor={red!0!black},
+	citecolor={green!0!black},
+	urlcolor={blue!0!black}
+}
+
+% EURO valuta
+\usepackage{eurosym}
+
+% dimensioni carattere
+\usepackage{relsize}
+
+
+
+
+\pagenumbering{roman}
+\title{Sviluppo di un sistema per la valutazione di gesti motori}
+\author{Manuel Iurissevich}
+\date{} % delete this line to display the current date
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% BEGIN DOCUMENT %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\maketitle
+
+\newcommand{\iic}{{\relsize{-1} I$^2$C}}
+\newcommand{\usb}{{\relsize{-1} {USB}}}
+\newcommand{\sda}{{\relsize{-1} {SDA}}}
+\newcommand{\scl}{{\relsize{-1} {SCL}}}
+\newcommand{\vcc}{{\relsize{-1} \(V_{CC}\)}}
+\newcommand{\master}{\textit{master}}
+\newcommand{\slave}{\textit{slave}}
+\newcommand{\Ack}{\textit{acknowledge}}
+\newcommand{\ack}{\relsize{-1}{ACK}}
+\newcommand{\pullup}{\textit{pull-up}}
+
+
+
+
+
+
+
+
+\input{Capitoli/0/abstract}
+
+%\vfill
+% \input{Capitoli/Front/istruzioni}\vfill
+
+
+
+\selectlanguage{italian}
+
+	
+\setcounter{tocdepth}{2}
+\tableofcontents
+\vfill
+\thispagestyle{empty}
+\eject
+
+\pagenumbering{arabic}
+%\pagestyle{useheadings}
+
+\newpage
+\thispagestyle{empty}
+\mbox{}
+
+
+
+
+
+\chapter{Introduzione} \label{cap:intro}
+		\input{Capitoli/1/Sommario} \vfill\eject
+	\section{Definizione} \label{sez:defnizione}
+		\input{Capitoli/1/Gesto} \vfill
+	\section{Specifiche} \label{sez:specifiche}
+		\input{Capitoli/1/Specifiche} \vfill
+	\section {La biomeccanica: breve introduzione
+	  \texorpdfstring{\footnote{ \cite{cit:donskoi}}}{(cit)}}
+	  \label{sez:biomeccanica}
+		\input{Capitoli/1/Biomeccanica} \vfill
+% \theendnotes
+
+
+
+\chapter{Acquisizione} \label{cap:acquis}
+		\input{Capitoli/2/21/Sommario} \vfill\eject
+	\section{Meccanica} \label{sez:meccanica}
+		\input{Capitoli/2/21/Meccanica} \vfill
+	\section{Elettronica} \label{sez:elettronica}
+		\input{Capitoli/2/21/Elettronica} \vfill
+%% \theendnotes
+
+\chapter{Elaborazione} \label{cap:elab}
+		\input{Capitoli/2/22/Sommario} \vfill\eject
+	\section{Strumenti utilizzati} \label{sez:strumenti}
+		\input{Capitoli/2/22/Strumenti} \vfill
+	\section{Algoritmi} \label{sez:algoritmi}
+		\input{Capitoli/2/22/Algoritmi} \vfill
+	\section{Macchine a vettori di supporto} \label{sez:svm}
+		\input{Capitoli/2/22/Svm} \vfill
+
+%% \theendnotes
+
+\chapter{Verifica sperimentale} \label{cap:verifica}
+		\input{Capitoli/2/23/Sommario} \vfill\eject
+	\section{Cosa si vuole verificare} \label{sez:cosa}
+		\input{Capitoli/2/23/Cosa} \vfill
+	\section{Criteri di valutazione} \label{sez:criteri}
+		\input{Capitoli/2/23/Criteri} \vfill
+	\section{Come} \label{sez:come}
+		\input{Capitoli/2/23/Come} \vfill
+	\section{Realizzazione di un esperimento} \label{sez:esperimento}
+		\input{Capitoli/2/23/Esperimento} \vfill
+%% \theendnotes
+
+
+
+\chapter{Conclusioni} \label{cap:conclusioni}
+		\input{Capitoli/3/Sommario} \vfill\eject
+	\section{Risultati dell'esperimento} \label{sez:risultati}
+		\input{Capitoli/3/Risultati} \vfill
+	\section{Sviluppi futuri} \label{sez:sviluppi}
+		\input{Capitoli/3/Sviluppi} \vfill
+%% \theendnotes
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\eject
+\newpage
+\thispagestyle{empty}
+\mbox{}
+
+\appendix{}
+%\input{Capitoli/App/Dimensioni}
+
+\eject
+\newpage
+\thispagestyle{empty}
+\mbox{}
+
+\listoffigures
+\begingroup
+\let \clearpage \relax
+\addcontentsline{toc}{chapter}{Elenco delle figure, delle tabelle e dei codici}
+\vfill \listoftables
+\vfill \lstlistoflistings
+\endgroup
+%\addcontentsline{toc}{section}{\listfigurename}
+%\addcontentsline{toc}{section}{\listtablename}
+%\addcontentsline{toc}{section}{\lstlistlistingname}
+\eject
+\newpage
+\thispagestyle{empty}
+\mbox{}
+
+%\include{Bibliografia}
+\bibliographystyle{natbib_ita}
+\bibliography{bib}
+\addcontentsline{toc}{chapter}{\refname}
+\vfill\eject
+
+\input{Back/Ringraziamenti}
+
+\end{document}

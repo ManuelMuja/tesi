@@ -1,0 +1,159 @@
+Si attribuisce a un certo Vapnik l'applicazione fruttuosa
+del kernel all'apprendimento automatico (1992).
+
+\subsection{Il Kernel}
+Prende il nome da qualche teoria matematica avanzata.
+Per capirsi
+\subparagraph{Il prodotto scalare \`e un kernel} Presi due vettori, due elementi di uno spazio
+in cui sia definito un prodotto scalare,
+il kernel sar\`a un'estensione del prodotto scalare consueto
+\subparagraph{Il kernel \`e un prodotto scalare} L'idea
+di portarsi in un comodo spazio dotato di prodotto scalare
+per poi applicare il kernel
+
+
+Formalmente:
+\begin {equation}
+  \label {eq:kernel}
+  k = \langle \mathbf{\Phi}(x_1), \mathbf{\Phi}(x_2) \rangle
+\end{equation}
+dove $\mathbf{\Phi}(x)$ \`e una mappa -se si vuole- non lineare
+che porta i generici elementi $x$
+in uno spazio dotato di prodotto scalare.
+
+NB$_{1}$: Gli elementi originali possono quindi non essere neanche vettori.\par
+NB$_{2}$: In generale \`e pi\`u semplice scrivere la funzione kernel piuttosto che la mappa.\par
+Oss: Praticamente si stanno estraendo le caratteristiche.\par
+
+\subsubsection{Il kernel e l'apprendimento automatico}
+Rimanendo nell'ambito della classificazione binaria
+la funzione discriminante \`e
+\begin{equation}
+	\label{eq:discriminante}
+	y_n = sgn \left(\langle w, \mathbf{\Phi}(x_n) \rangle + b \right)
+\end{equation}
+ma si definiscono i pesi come
+\begin{equation}
+  \label{eq:pesikernel}
+  w = \sum_i y_i \alpha_i \mathbf{\Phi}(x_i)
+\end{equation}
+con $\alpha_i$ che \textbf{come si chiama?}
+Sostituendo la \ref{eq:pesikernel} nella \ref{eq:discriminante}
+si ottiene
+\begin{align}
+  y_n &= sgn \left(\sum_i y_i \alpha_i \langle \mathbf{\mathbf{\phi}}_i,\mathbf{\mathbf{\phi}}_n \rangle + b \right) \\
+  &= sgn \left(\sum_i y_i \alpha_i k(x_i,x_n) + b \right)
+  \label{eq:uscitakernel}
+\end{align}
+
+\subsubsection {Il kernel perceptron}
+(Tratto da un articolo dell'Universit\`a di Trento).
+L'algoritmo di apprendimento \`e molto simile
+a quello del percettrone classico.
+La differenza sta nel calcolo della funzione (vedi eq. precedente)
+e nell'aggiornamento dei pesi:
+gli $\alpha_i$ sono incrementati ogni volta che
+il neurone sbaglia la previsione su un $x_i$.
+
+
+\subsubsection {\acf{spra}}
+Schoelkopf e Smola propongono un semplice algoritmo di classificazione
+introduttivo alle macchine a vettori di supporto (\ac{svm}).
+
+Non si fa altro che prendere i punti medi delle due classi ($c_1$ e $c_2$),
+prendere il vettore differenza trai due $w=c_1-c_2$
+il loro punto medio ($c=(c1+c2)/2$).
+
+Ora ogni altro punto di classe ignota
+pu\`o essere etichettato con
+\(y =sgn \left( \langle \boldsymbol{x-c}, \boldsymbol{w} \rangle \right)\).
+
+
+
+\subsection {\acf{svm}}
+Sono algoritmi che usano l'espediente del kernel
+per mappare le sequenze in degli spazi comodi
+(tipicamente con molte dimensioni in pi\`u)
+dove trovare il piano di separazione che massimizza il margine (\textsc{Figura~\ref{fig:clus_svm}}).
+Nello spazio di partenza la separazione pu\`o assumere le forme pi\`u diverse
+(dipende dalla mappa non lineare).
+
+Il problema \`e posto nei termini di minimizzazione della lagrangiana
+\begin{equation}
+    L_P = lagrangiana
+  \label{eq:lagrangiana}
+\end{equation}
+o massimizzazione della sua duale
+\begin{align}
+  \label{eq:lagr_duale}
+  L_D &= \sum_i \alpha_i - \frac{1}{2} \sum_i \sum_j \alpha_i \,\alpha_j \,y_i \,y_j \,k(\boldsymbol{x_i}, \boldsymbol{x_j}) \\
+  \langle \boldsymbol{\alpha}, \boldsymbol{y} \rangle &= 0 \\
+  \alpha_i &\geq 0
+\end{align}
+
+\begin{figure}
+\centering
+\input{Disegni/cluster_svm.tex}
+\caption{L'\acs{svm} trova il piano di separazione che massimizza il margine}
+\label{fig:clus_svm}
+\end{figure}
+
+\subsubsection{Ottimizzazione con MatLab}
+Per eseguire lquesta operazione si utilizza la funzione
+\(fmincon\) di ottimizzazione vincolata.
+
+\par
+Questa strumento prende in ingresso
+la funzione obiettivo e la funzione supporto,
+vale a dire la funzione da minimizzare e i vincoli non lineari da rispettare;
+il punto di partenza;
+gli eventuali vincoli lineari di uguaglianza e disuguaglianza.
+
+
+\subsection {I consigli di Chang e Lin}
+I creatori della libreria $libsvm$ danno alcuni suggerimenti
+per iniziare presto ad avere risultati soddifacienti con le \ac{svm}.
+\begin{itemize}
+  \item {trasformare i dati nel formato di un pacchetto svm}
+  \item {eseguire uno scalaggio semplice dei dati}
+  \item {considerare i kernel a base radiale (gaussiani)}
+  \item {crossvalidare per trovare i $C$ e $\gamma$ migliori}
+  \item {usare questi $C$ e $\gamma$ per addestrare sull'intero insieme di adestramento}
+  \item {testare}
+\end{itemize}
+
+\subsubsection {I parametri $\mathbf{C}$ e $\mathbf{\gamma}$}
+Il parametro $C$ \`e il costo.
+Serve a rendere pi\`u laschi i vincoli dell'ottimizzazione
+\begin{equation}
+  \label{eq:vincoliC}
+  0 \leq \alpha_i \leq C
+\end{equation}
+Necessario quando le due classi \emph{non} sono separabili,
+\`e utile quando le classi sono \textit{apparentemente} separabili,
+cio\`e l'insieme di addestramento le mostra separabili
+ma dagli insiemi di validazione o test appare che non lo sono.
+
+In \textsc{Figura~\ref{fig:costo}} i vettori a tratto continuo
+rappresentano gli esempi di addestramento.
+La macchina separa le due classi senza alcuna tolleranza per eventuali \textit{outliers}.
+Quando nella fase di test appaiono i vettori rappresentati col tratteggio, la prima divisione di dimostra inadeguata, in favore di un piano separatore più ovvio ma con una certa tolleranza.
+
+
+Il parametro $\gamma$ fa riferimento alla \textsc{Formula~\ref{eq:rbfk}} del kernel a base radiale (\ac{rbfk})
+\begin{equation}
+  \label{eq:rbfk}
+  k(\boldsymbol{x_1}, \boldsymbol{x_1}) = 
+    \gamma\,||\boldsymbol{x_1}-\boldsymbol{x_2}||^2
+\end{equation}.
+
+ma non \`e utilizzato nell'esempio
+perch\'e si usa il un kernel polinomiale di secondo grado.
+
+
+\begin{figure}
+\centering
+\input{Disegni/costo.tex}
+\caption{Importanza del parametro di costo}
+\label{fig:costo}
+\end{figure}

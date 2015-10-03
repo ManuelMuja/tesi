@@ -1,0 +1,87 @@
+Si propone un'esperimento \textbf{con} un gesto più complesso, il \textit{Port de bras} della danza classica.
+
+\subsection{Descrizione del movimento}
+I motivi per cui è stato scelto questo gesto sono  
+\begin{itemize}
+	\item coinvolge soltanto un arto, lasciando fermo il resto del corpo monte della spalla
+    \item è abbastanza lento da poter essere rilevato con tutti gli accelerometri disponibili, sia rispetto al campo di misura, che alla frequenza di campionamento
+    \item è semplice dal punto di vista cinematico
+    \item è altrettanto facile da sbagliare
+\end{itemize}
+
+\paragraph{Fasi del movimento}
+\begin{enumerate}
+	\item \textbf{Posizione di partenza:} con il braccio rotondo e la spalla giù, portare la mano 5cm in avanti rispetto alla posizione di riposo
+    \item \textbf{Elevazione:} tenendo la spalla bassa e il gomito sostenuto, alzare la mano fino all'altezza dell'ombelico
+    \item \textbf{Apertura:} aprire il braccio, sempre rotondo \emph{non} al di fuori del campo visivo e \emph{non} dietro alla spalla.
+\end{enumerate}
+
+\paragraph{Ulteriori precisazioni e possibili errori}
+\begin{itemize}
+    \item [$\checkmark$] attenzione a mantenere il bracci ovale
+    \item [$\checkmark$] alzare all'altezza dell'ombelico, non del volto
+    \item [$\checkmark$] prima si sale e \emph{poi} si apre, non tutto insieme
+	\item[$\times$] mano decentrata
+   	\item[$\times$] gomito disteso
+	\item[$\times$] alla fine, gomito troppo basso rispetto alla spalla
+   	\item[$\times$] mano troppo indietro
+\end{itemize}
+
+
+
+
+
+
+\subsection{Fase di acquisizione e raccolta dei dati}
+
+\paragraph{Strumenti e persone} 
+
+\begin{itemize}
+  \item accelerometro e applicazione per la raccolta dei dati a bordo di un telefono cellulare
+  \item telecamera
+  \item una persona esperta
+  \item due persone non esperte.
+\end{itemize}
+Nota bene: tutti gli interessati sono destrimani.
+
+\paragraph{Preparazione}
+D'accordo con l'esperta, si è deciso di raccogliere un numero di esempi simile a quello che si avrebbe all'inizio di in una seduta di allenamento, con l'istruttrice che per la prima volta spiega l'esercizio agli allievi:
+\begin{itemize}
+	\item[10] esempi corretti della maestra
+    \item[10$\times$2] esempi degli allievi da valutare (verosimilmente scorretti) 
+    \item[2$\times$Err] esempi scorretti della maestra
+    \item[5] altri esempi corretti della maestra
+    \item[10$\times$2] esempi degli allievi da valutare (verosimilmente migliori di prima)
+    \item[5$\times$2] movimenti intenzionalmente scorretti e rumorosi
+\end{itemize}
+A turno gli esegutori prendono lo \textit{smartphone} e
+si posizionano in modo da non avere ostacoli che impediscano i movimenti
+ed avere una buona luce per le riprese.
+Si cerca di far partire contemporaneamente registrazione e riprese.
+Gli esempi sono registrati sulla stessa traccia.
+Si pone un'attesa di circa due secondi prima del gesto,
+una di tre secondi alla fine, col braccio ancora alto),
+poi si riabbassa il braccio e,
+una volta in posizione di partenza,
+si attendono di nuovo i due secondi e si ripete.
+
+
+
+\subsubsection{Estrazione degli esempi dalle tracce}
+Come scritto nel paragrafo precedente,
+si acquisiscono cinque, dieci esempi per traccia
+che devono essere poi estratti.
+
+A seconda della complessità del movimento e
+della facilità con cui si possono riconoscere i \textit{pattern} nelle tracce,
+l'estrazione può essere più o meno automatizzata.
+Nel caso in questione, si è preferito \textbf{prendere} i \textit{timestamp}
+dalle riprese video e \textbf{ritagliare} quindi i segmenti in MatLab.
+Ogni esempio ha un suo tempo di esecuzione e
+conseguentemente un diverso numero di campioni,
+quindi si è deciso di uniformarne la durata a cinque secondi
+(equivalenti a cento campioni),
+e \textbf{porre gli altri campioni costanti}.
+
+Prima di questa fase è consigliabile filtrare le tracce con un passabasso per ridurre il rumore,
+poi ridurre la frequenza di campionamento (\textsc{Sottosezione~\ref{ssez:filtraggio}}).
