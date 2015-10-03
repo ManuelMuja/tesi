@@ -1,12 +1,55 @@
-\subsection{Esperimenti possibili}
-\label{ssez:esp_possibili}
+\subsection {Protocollo di addestramento della \ac{svm}}
+I creatori della libreria $libsvm$ Chang e Lin
+danno alcuni suggerimenti
+per iniziare presto ad avere risultati soddifacienti con le \ac{svm}.
+\begin{itemize}
+  \item {trasformare i dati nel formato di un pacchetto svm}
+  \item {eseguire uno scalaggio semplice dei dati}
+  \item {considerare i kernel a base radiale (gaussiani)}
+  \item {crossvalidare per trovare i $C$ e $\gamma$ migliori}
+  \item {usare questi $C$ e $\gamma$ per addestrare sull'intero insieme di adestramento}
+  \item {testare}
+\end{itemize}
+
+\subsubsection {I parametri $\mathbf{C}$ e $\mathbf{\gamma}$}
+Il parametro $C$ \`e il costo.
+Serve a rendere pi\`u laschi i vincoli dell'ottimizzazione
+\begin{equation}
+  \label{eq:vincoliC}
+  0 \leq \alpha_i \leq C
+\end{equation}
+Necessario quando le due classi \emph{non} sono separabili,
+\`e utile quando le classi sono \textit{apparentemente} separabili,
+cio\`e l'insieme di addestramento le mostra separabili
+ma dagli insiemi di validazione o test appare che non lo sono.
+
+In \textsc{Figura~\ref{fig:costo}} i vettori a tratto continuo
+rappresentano gli esempi di addestramento.
+La macchina separa le due classi senza alcuna tolleranza per eventuali \textit{outliers}.
+Quando nella fase di test appaiono i vettori rappresentati col tratteggio, la prima divisione di dimostra inadeguata, in favore di un piano separatore più ovvio ma con una certa tolleranza.
+
+
+Il parametro $\gamma$ fa riferimento alla \textsc{Formula~\ref{eq:rbfk}} del kernel a base radiale (\ac{rbfk})
+\begin{equation}
+  \label{eq:rbfk}
+  k(\boldsymbol{x_1}, \boldsymbol{x_1}) = 
+    \gamma\,||\boldsymbol{x_1}-\boldsymbol{x_2}||^2
+\end{equation}.
+
+ma non \`e utilizzato nell'esempio
+perch\'e si usa  un kernel polinomiale di secondo grado
+
+\begin{equation}
+  \label{eq:rbfk}
+  k(\boldsymbol{x_1}, \boldsymbol{x_1}) = 
+    (\boldsymbol{x_1}\cdot\boldsymbol{x_2} +1)^2
+\end{equation}.
 
 
 
-\subsection{Esperimenti fattibili}
-\label{ssez:esp_fattibili}
-
-
-
-\subsection{Impostazione di un esperimento}
-\label{ssez:impost_esp}
+\begin{figure}
+\centering
+\input{Disegni/costo.tex}
+\caption{Importanza del parametro di costo}
+\label{fig:costo}
+\end{figure}
