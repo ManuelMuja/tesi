@@ -1,5 +1,6 @@
-Introduzione alla sezione
-
+Seguendo il percorso del segnale elettrico dai sensori al calcolatore,
+si motivano le scelte di progetto e
+se ne espongono i principali aspetti.
 
 \subsection{Sensori}
 \label{ssez:sensori}
@@ -87,7 +88,7 @@ Pro     & $>$30          & 10k \\
 		\end{tabular}
 	  \end{center}
 	\end{table}
-        
+
     L'accelerometro di fascia bassa risponde adeguatamente a sollecitazioni deboli,
     mentre risulta totalmente inadeguato all'applicazione finale,
     sia per ampiezza che per frequenza di campionamento.
@@ -109,7 +110,7 @@ Pro     & $>$30          & 10k \\
 		% Center the figure.
 		\begin{center}
 		% Include the eps file, scale it such that it's width equals the column width. You can also put width=8cm for example...
-		\includegraphics[width=\columnwidth]{taybella_copia}
+		\resizebox{\columnwidth}{!}{\includegraphics{taybella_copia.pdf}}
 		% Create a subtitle for the figure.
 		\caption{Esempio di ricostruzione di un segnale saturato}
 		% Define the label of the figure. It's good to use 'fig:title', so you know that the label belongs to a figure.
@@ -211,7 +212,7 @@ USB-ISS      &  1          & 24,89\\
 	
 \begin{figure}[t]
 	\centering
-	\includegraphics[scale=.3]{I2C_data_transfer}
+\resizebox{\textwidth}{!}{\includegraphics{I2C_data_transfer.png}}
     \caption{Diagramma temporale di una comunicazione \iic{}. S - Start; P - Stop; B - trasferimento di un bit; commutazione sul fronte di discesa del clock (blu). Opera di pubblico dominio di Marcin Floryan.}
     \label{fig:i2c_trans}
 \end{figure}

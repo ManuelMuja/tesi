@@ -20,7 +20,7 @@ I motivi per cui è stato scelto questo gesto sono
 
 \paragraph{Ulteriori precisazioni e possibili errori}
 \begin{itemize}
-    \item [$\checkmark$] attenzione a mantenere il braccio ovale
+    \item [$\checkmark$] attenzione a mantenere il braccio \textit{ovale}
     \item [$\checkmark$] alzare all'altezza dell'ombelico, non del volto
     \item [$\checkmark$] prima si sale e \emph{poi} si apre, non tutto insieme
 	\item[$\times$] mano decentrata
@@ -44,7 +44,7 @@ I motivi per cui è stato scelto questo gesto sono
   \item una persona esperta
   \item due persone non esperte.
 \end{itemize}
-Nota bene: tutti gli interessati sono destrimani.
+Nota: tutti gli interessati sono destrimani.
 
 \paragraph{Preparazione}
 D'accordo con l'esperta,
@@ -93,9 +93,46 @@ e \textbf{porre gli altri campioni costanti}.
 
 Prima di questa fase è consigliabile filtrare le tracce con un passabasso per ridurre il rumore,
 poi ridurre la frequenza di campionamento (\textsc{Sottosezione~\ref{ssez:filtraggio}}).
+
+
+
+
+
+
+
 \subsection{Fase di Elaborazione}
 
 {\bfseries Considerazione sulla fase di elaborazione,
 come ad esempio la crossvalidazione su $C$}
 
-% \subsubsection{Risultati dell'esperimento}
+Per trovare il miglior parametro di $costo$
+si addestra la macchina sul 60\% delgli esempi
+
+
+
+
+\subsection{Risultati dell'esperimento}
+
+  Si ottiene un classificatore molto severo
+  che classifica \emph{sbagliati} anche due esempi della maestra.
+\begin{center}
+	Tasso di successo:  75\%
+\end{center}
+  
+\begin{table}
+\centering
+\begin{tabular}{c c|c}
+\multicolumn{2}{c}{Il gesto è\dots} & {La risposta è\dots}\\
+	Valutazione	&	Risposte della	& \\
+    dell'esperta&	macchina		& \\
+\hline
+	$+$			&	$-$		& \Large{\frownie{}}\\
+	$-$			&	$-$		& \Large{\smiley{}}\\
+	$-$			&	$-$		& \Large{\smiley{}}\\
+	$-$			&	$-$		& \Large{\smiley{}}\\
+	$-$			&	$-$		& \Large{\smiley{}}\\
+	$+$			&	$-$		& \Large{\frownie{}}\\
+	$-$			&	$-$		& \Large{\smiley{}}\\
+	$-$			&	$-$		& \Large{\smiley{}}
+\end{tabular}
+\end{table}

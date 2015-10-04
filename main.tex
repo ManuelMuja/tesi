@@ -133,7 +133,10 @@ pdfstartpage=5, pdfstartview=FitV,%
 %%% BEGIN DOCUMENT %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\maketitle
+%\maketitle
+\includepdf{Capitoli/0/Frontespizio}
+
+
 
 \newcommand{\iic}{{\relsize{-1} I$^2$C}}
 \newcommand{\usb}{{\relsize{-1} {USB}}}
@@ -186,8 +189,7 @@ pdfstartpage=5, pdfstartview=FitV,%
 		\input{Capitoli/1/Gesto} \vfill
 	\section{Specifiche} \label{sez:specifiche}
 		\input{Capitoli/1/Specifiche} \vfill
-	\section {La biomeccanica: breve introduzione
-	  \texorpdfstring{\footnote{ \cite{cit:donskoi}}}{(cit)}}
+	\section {La biomeccanica}
 	  \label{sez:biomeccanica}
 		\input{Capitoli/1/Biomeccanica} \vfill
 % \theendnotes
