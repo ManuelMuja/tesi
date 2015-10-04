@@ -1,162 +1,80 @@
-\paragraph{Vediamo}
-Cerchiamo adesso di specializzare sul mio sistema il processo appena visto.
 
 %% Definizione
-	\subsection{Definizione}
+	\subsection{Definizione} \label{ssez:definizione}
 
 \begin{quotation}
-	\textbf{Il movimento} √® il risultato dell‚Äôattivazione
+	\textbf{Il movimento} è il risultato dell'attivazione
 	di un limitato distretto muscolare che produce lo spostamento nello spazio
-	di una o pi√π articolazioni.
-	Esempi: \alert{flessione di un dito}, rotazione di un polso.
-	\textbf{L'atto motorio} √® il \alert{risultato di pi√π movimenti},
-	eseguiti sinergicamente e in maniera fluida, che coinvolgono pi√π articolazioni. 
-%	-- Mandolesi L.(2012), \emph{Neuroscienze dell'attivit√† motoria.} Springer, Milano
-\end{quotation} \cite{cit:mandolesi}
+	di una o più articolazioni.
+	Esempi: \emph{flessione di un dito}, rotazione di un polso.
+	\textbf{L'atto motorio} è il \emph{risultato di più movimenti},
+	eseguiti sinergicamente e in maniera fluida, che coinvolgono più articolazioni. 
+%	-- Mandolesi L.(2012), \emph{Neuroscienze dell'attività motoria.} Springer, Milano
+\cite{cit:mandolesi}
+\end{quotation} 
 
 \begin{quotation}
 	\textbf{Il gesto motorio} raffigura la comunicazione non verbale
 	mediante l'atto visibile relativo all'esecuzione,
-	pi√π o meno abile, di una risposta motoria.
-	La somma di pi√π gesti motori in successione √® denominata \textbf{atto motorio}.
-	-- Lestini G., \emph{Il significato di psicomotricit√†.} http://motricitascuola.altervista.org/
-\end{quotation} \cite{cit:lestini}
+	più o meno abile, di una risposta motoria.
+	La somma di più gesti motori in successione è denominata \textbf{atto motorio}.
+%	-- Lestini G., \emph{Il significato di psicomotricità.} http://motricitascuola.altervista.org/
+\cite{cit:lestini}
+\end{quotation}
+
+La definizione è ambigua.
+Vista l'astrattezza del termine \emph{gesto},
+si è preferito nel titolo del lavoro specificare che si tratterà di gesti \emph{motor\^i}.
+Il sinonimo \emph{movimento},
+troppo generico per essere inserito nel titolo di una tesi in ingegneria,
+sarà invece utilizzato nel testo
+una volta stabiliti gli ambiti di studio: elettronica, neuroscienze, biomeccanica.
 
 
-	\paragraph{Obiettivi}
-	Un dispositivo facilmente maneggiabile
-	che unito a un sistema di calcolo
-	valuti l'esecuzione di un movimento.
-
-	\paragraph{Vincoli}
-	Pochi sensori (da 1 a 3) rigidamente solidali con l'arto.
-	
-	\paragraph{Risorse}
-	Accelerometri triassiali, reti neurali, MatLab et similia.
-	
-%% Concettualizzazione
-	\subsection{Concettualizzazione}
-	
-	\subsubsection{Descrizione e suddivisione}
-	Una pratica della fisioterapia consiste nel suddividere un gesto -apparentemente- semplice in sottogesti elementari.
-	Durante l'esecuzione del gesto da parte del paziente,
-	l'esperto nota imperfezioni in queste fasi elementari
-	e basandosi appunto su quale errore viene commesso in quale fase,
-	pu\`o ipotizzare una patologia e quindi un percorso di cura.
-	Se l'esperto non \`e un fisioterapista ma un allenatore
-	e a essere sotto esame \`e un atleta che deve imparare
-	un gesto tecnico, il problema \`e molto simile.
-	
-	Si cerca quindi di progettare un sistema di prova,
-	un "sistema esperto" che possa sostituire
-	o pi\`u verosimilmente aiutare allenatori e fisioterapisti
-	a individuare e correggere gli errori.
-	
-	\begin {itemize}
-	\item [Acquisizione] Nello specifico si vorrebbe utilizzare da uno a tre accelerometri triassiali,
-	\item [Montaggio] {montati su un guanto o su una manica,}
-	\item [Collegamenti] collegati via cavo o radio con un processore
-	\item [Elaborazione 1] che si occupi di tutta la parte di filtraggio,
-	\item [Elaborazione 2] estrazione delle caratteristiche,
-	\item [Elaborazione 3] classificazione (clustering)
-	\item [Elaborazione 4] e valutazione.
-	\end {itemize}
-	
-	Con l'aiuto di un esperto umano
-	bisogner\`a definire cosa sia giusto e cosa sbagliato,
-	stabilire quali siano alcuni criteri di distinzione
-	in maniera da indirizzare la macchina verso la classificazione.
-	Stabilite le caratteristiche da estrarre
-	e fornite alla macchina le opportune operazioni da eseguire,
-	alle caratteristiche pu\`o anche essere assegnato un peso.
-	Queste possono essere propriet\`a statistiche dei segnali
-	oppure una determinata forma nel tempo
-	o nel dominio della frequenza.
-	
-	I dati cos\`i filtrati e sottodimensionati potranno quindi
-	essere dati in pasto a una o pi\`u reti neurali
-	che si occupino della classificazione e della valutazione.
-	Questi processi sono uno non-supervisionato, l'altro supervisionato.
 
 
-\begin{landscape}
-\centering
-\resizebox{1.5\textwidth}{!}{%
-\Tree[.Valutazione
-		[.Acquisizione
-			[.Meccanica
-				Manicotto
-				{Catena cinematica}
-			] % Meccanica
-			[.Elettronica
-				[.Sensori
-					Accelerometri
-				] % Sensori
-				[.Strumentazione
-					[.Condizionamento
-						{Front-end}
-						{Filtraggio hw}
-					] % Condizionamento
-					Trasmissione
-				] % Strumentazione
-			] % Elettronica
-		] % Acquisizione
-		[.Elaborazione
-			[.Strumentazione
-				{Calcolatore\\con MatLab}
-				{Meglio un\\µcontrollore}
-			] % Strumentazione
-			[.Algoritmi
-				[.{Filtraggio sw}
-					Smoothing
-					Picchi
-				] % Filtraggio sw
-				[.Classificazione
-					{Estrazione\\caratteristiche}
-					{Scelta\\caratteristiche}
-				] % Classificazione
-			] % Algoritmi
-		] % Elaborazione
-	]} % Valutazione
-\end{landscape}
+
+% Problema
+	\subsection{Il problema}
+
+Il problema fondamentale al quale si cerca di dare una soluzione
+è utilizzare tecniche non invasive per fornire dati quantitativi sui movimenti
+a medici e pazienti (come ad allenatori ed atleti),
+che possano essere loro di aiuto a migliorare la qualità degli esercizi
+(sportivi o fisioterapici)
+e a prevenire infortuni.
+
+Particolare attenzione va posta al problema dell'\emph{autonomia} dei soggetti.
+Se esercitarsi porta benefici, farlo in modo errato può provocare danni alla parsona.
+D'altro canto non è possibile per un esperto garantire assistenza costante,
+per fornire indicazioni e correzioni, per lo meno per questioni di costo.
+
+È per questo che ci si sforza di fornire soluzioni per il supporto domestico ai pazienti,
+come anche software per la ginnastica fai-da-te.
 
 
-\eject
-\begin{framed} \begin{verbatim}
-  1   Valutazione
-  2   |__ Acquisizione
-  3   |   |__ Meccanica
-  4   |   |   |__ Manicotto solidale col movimento
-  5   |   |   |__ Studio della catena cinematica
-  6   |   |_ Elettronica
-  7   |      |__ Sensori
-  8   |      |   |__ Accelerometri
-  9   |      |__ Strumentazione
- 10   |          |__ Condizionamento
- 11   |          |   |__ Front-end
- 12   |          |   |__ Filtraggio hw
- 13   |          |__ Trasmissione -->-+
-    13|                               |
-  1   |__ Elaborazione <-<-<-<-<-<-<--+
-  2   |   |__ Strumentazione
-  3   |   |   |__ Calcolatore con MatLab
-  4   |   |   |__ (Era meglio un bel µ-controllore)
-  5   |   |__ Algoritmi
-  6   |       |__ Filtraggio sw
-  7   |       |   |__ Smoothing
-  8   |       |   |__ Conta dei picchi
-  9   |       |__ Classificazione
- 10   |           |__ Estrazione delle caratteristiche
- 11   |           |__ Scelta delle caratteristiche
-    24|
-  1   |__ Verifica sperimentale
-  2       |__ Cosa si vuole verificare
-  3       |__ Stabilire criteri di valutazione
-  4       |__ Come si vuole verifcare
-  5       |   |__ Esperimenti possibili
-  6       |   |__ Esperimenti fattibili
-  7       |   |__ Impostazione di un esperimento
-  8       |__ Realizzazione di un esperimento
-  9           |__ Risultati Sperimentali
-    33
-\end{verbatim} \end{framed}
+
+
+% Stato dell'arte
+	\subsubsection{Lo stato dell'arte}
+Le soluzioni proposte per questo genere di problemi
+sono solitamente basate su tecniche di visione artificiale.
+Queste richiedono però l'installazione di telecamere
+e una luce appropriata alle riprese,
+necessità che vincolano i movimenti all'interno di una stanza.
+Sono soluzioni valide in un laboratorio medico o in una palestra,
+meno valide in ambiente domestico,
+quasi improponibili in un campo sportivo o in un parco.
+
+
+
+Tra le soluzioni basate sugli accelerometri
+le più pertinenti da citare in questo testo
+sono un guanto proposto per migliorare la tecnica
+nel lancio dei dardi \footnote{\,\cite{cit:guanto}}
+e una manica per prevenire gli infortuni nel baseball \footnote{\cite{cit:manica}}.
+
+
+
+
+
