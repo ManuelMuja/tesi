@@ -48,7 +48,7 @@ messi in fila o in tabelle di qualsivoglia dimensione.
 Se così non fosse, l'estrazione delle caratteristiche
 non sarebbe soltanto una comodità per ridurre la mole di calcoli
 bensì una necessità per portare gli oggetti in esame
-in uno spazio dove questi conti siano possibili.
+in uno spazio dove queste elaborazioni siano possibili.
 Si ritornerà sull'argomento trattando
 la mappatura delle \ac{svm}.
 
@@ -56,10 +56,10 @@ la mappatura delle \ac{svm}.
 \subsubsection{Scelta delle caratteristiche}
 \label{sssez:scelta}
 
-Se si conoscesse bene sia il problema che la soluzione e
-si volesse semplicemente far eseguire le classificazioni
-al calcolatore soltanto per questioni di tempo o economiche,
-si potrebbe implementare manualmente le regole nel codice della macchina.
+Un approccio al problema, tipico della logica sfumata,
+\`e conoscere a priori il gesto da valutare e
+implementare manualmente le regole di classificazione nel codice della macchina.
+Si ottiene così una soluzione specifica.
 
 Quando si vuole invece scoprire queste regole,
 occorre avanzare delle ipotesi e poi vagliarle.
@@ -68,7 +68,7 @@ si può procedere estraendone in sovrannumero e
 calcolando a posteriori quelle più importanti.
 Fatto questo, si possono ``scartare'' le discriminazioni evidenti
 e scegliere di concentrarsi sugli aspetti più sottili.
-
+Si preferisce questa soluzione per la sua generalità.
 
 
 
@@ -91,7 +91,7 @@ che consiste in
 
 \paragraph{Con Matlab}
 Il toolbox $statistics$ mette a disposizione il comando $kmeans$ che,
-fornitigli i punti e il numero di gruppi desiderati,
+ricevendo in ingresso i punti e il numero di gruppi desiderati,
 restituisce le etichette per ogni punto e le coordinate dei centroidi.
 Altro scalaggio per visualizzare i dati in 2D.
 

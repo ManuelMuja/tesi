@@ -18,8 +18,7 @@ Descrizione di quelli utilizzati e confronto con gli altri.
 	\end{itemize}
 
     La \textsc{Tabella~\ref{tab:accelerometri}} mostra sinteticamente un confronto
-    tra i sensori disponibili sui siti internet
-    dei principali fornitori di componenti elettronici per l'Italia.
+    tra i sensori disponibili sul mercato.
 
 	\begin{table}
 		% Center the table
@@ -45,13 +44,7 @@ SF MMA & 2-8            & 8, 12      & 10,03          & \iic \\
 		\end{center}
 	\end{table}
     
-    \subsubsection {L'uscita digitale} \label{sssez:digitale}
-    Si è scelto fin da subito di cercare accelerometri già montati su scheda
-    in maniera da risparmiare tempo e poter arrivare più facilmente
-    al punto di raccogliere i dati necessari al successivo lavoro di tesi,
-    visto che soltanto la realizazione del circuito di condizionamento
-    sarebbe potuto essere un valido argomento per il tirocinio.
-	
+    \subsubsection {L'uscita digitale} \label{sssez:digitale}	
     Con l'uscita digitale, per ogni numero di accelerometri
     è sufficiente un unico \textit{bus} da tre cavi
 	\footnote{\,Dipende da quanti indirizzi sono disponibili
@@ -104,7 +97,7 @@ Pro     & $>$30          & 10k \\
     il segnale da ricostruire è rappresentato in blu e
     in rosso il segnale corretto, mentre
     con il bollino nero si evidenzia l'ampiezza massima stimata.
-    A posteriori, si verdrà che il segnale vero è più ampio.
+    A posteriori, si vedrà che il segnale vero è più ampio.
     Si nota presto che la frequenza di campionamento
     dev'essere almeno raddoppiata.
 
@@ -145,7 +138,7 @@ Pro     & $>$30          & 10k \\
     
 Il protocollo \iic{} mette quindi a disposizione
     \(2^7=128\) indirizzi \footnote{\,Sedici indirizzi sono riservati}
-    ma i costruttori delle basette su cui sono montati gli accelerometri
+    ma i costruttori delle schede di sviluppo su cui sono montati gli accelerometri
     fissano tutti o quasi i piedini, lasciando disponibili uno o due indirizzi.
     Si rende quindi necessario l'utilizzo di linee separate o di un \textit{multiplexer}: avendo disponibile in casa un adattatore con due canali,
     si è scelto di percorrere la prima via.
@@ -207,7 +200,7 @@ USB-ISS      &  1          & 24,89\\
 
 \relsize{0}
 %	Descrizione del protocollo con le solite figure.
-    Progettato dalla Philips Semiconduttori (ora NXP) nel 1982
+    Fu progettato dalla Philips Semiconduttori (ora NXP) nel 1982
     per la comunicazione tra componenti sulla stessa scheda circuitale.
     La velocità standard è di 100kbit/s,
     accelerata a 400kbit/s (modalità veloce)
@@ -226,7 +219,7 @@ USB-ISS      &  1          & 24,89\\
 
     Pregi:
 \begin{itemize}
-	\item {Sono necessarie soltanto due linee}
+	\item {sono necessarie soltanto due linee}
 	\item {relazione {\master}-{\slave}, ciascuno con un indirizzo univoco}
 	\item {il master genera il clock}
 	\item {
@@ -304,10 +297,6 @@ ma non sono ovvie per le implementazioni software~\cite{cit:primer}.
 \subsection{Descrizione del sistema e diagnostica}
 In questa fase si utilizza un {\relsize{-.5}PC}
 con sistema operativo MS Windows e NI LabView installato.
-Sul sito internet della F{\relsize{-.5}TDI} è possibile scaricare
-i \textit{driver} necessari a interfacciarsi col convertitore
-e gli esempi per diversi ambienti di programmazione.
-L'esempio per LabView è descritto nell'apposita \textsc{Sezione~\ref{sez:librerie}}.
 
 Il convertitore è inserito in una porta {\usb} del calcolatore
 e i suoi piedini dedicati alla comunicazione {\iic} sono inseriti

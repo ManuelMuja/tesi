@@ -1,9 +1,10 @@
 \subsection {Protocollo di addestramento della \ac{svm}}
-I creatori della libreria $libsvm$ Chang e Lin
-danno alcuni suggerimenti
-per iniziare presto ad avere risultati soddifacienti con le \ac{svm}.
+Le indicazioni fornite da Chang e Lin
+per un approccio fruttuoso alle \ac{svm}
+sono riportati di seguito
+
 \begin{itemize}
-  \item {trasformare i dati nel formato di un pacchetto svm}
+  \item {Trasformare i dati nel formato di un pacchetto svm}
   \item {eseguire uno scalaggio semplice dei dati}
   \item {considerare i kernel a base radiale (gaussiani)}
   \item {crossvalidare per trovare i $C$ e $\gamma$ migliori}
@@ -26,7 +27,9 @@ ma dagli insiemi di validazione o test appare che non lo sono.
 In \textsc{Figura~\ref{fig:costo}} i vettori a tratto continuo
 rappresentano gli esempi di addestramento.
 La macchina separa le due classi senza alcuna tolleranza per eventuali \textit{outliers}.
-Quando nella fase di test appaiono i vettori rappresentati col tratteggio, la prima divisione di dimostra inadeguata, in favore di un piano separatore più ovvio ma con una certa tolleranza.
+Quando nella fase di test appaiono i vettori rappresentati col tratteggio,
+la prima divisione si dimostra inadeguata,
+in favore di un piano separatore più ovvio ma con una certa tolleranza.
 
 
 Il parametro $\gamma$ fa riferimento alla \textsc{Formula~\ref{eq:rbfk}} del kernel a base radiale (\ac{rbfk})
@@ -40,7 +43,7 @@ ma non \`e utilizzato nell'esempio
 perch\'e si usa  un kernel polinomiale di secondo grado
 
 \begin{equation}
-  \label{eq:rbfk}
+  \label{eq:polyk}
   k(\boldsymbol{x_1}, \boldsymbol{x_1}) = 
     (\boldsymbol{x_1}\cdot\boldsymbol{x_2} +1)^2
 \end{equation}.

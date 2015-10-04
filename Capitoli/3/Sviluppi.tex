@@ -1,14 +1,31 @@
-\begin{itemize}
-	\item Trasmissione senza fili
-    \item Aumentare gli esempi
-    \begin{itemize}
-		\item mantenendo le percentuali tra esempi di esperti e non
-    	\item anche provenienti da piattaforme hardware diverse
-	\end{itemize}
-    \item Aumentare i sensori
-    \begin{itemize}
-		\item per tracciare la catena cinematica completa
-    	\item per fornire la diagnostica
-	\end{itemize}
-    \item eseguire su microcontrollore o \textit{smartphone}
-\end{itemize}
+Si suggeriscono i principali miglioramenti da apportare al sistema realizzato.
+
+Il più immediato riguarda sicuramente la trasmissione dei dati
+dai sensori al programma di calcolo.
+La trasmissione via cavo va sostituita con tecnologie \textbf{senza fili}
+come il Bluetooth
+\textbf{è il termine corretto? cercare se è proprietario e il nome ufficiale},
+per non perdere il vantaggio della mobilità offerta dagli accelerometri.
+
+Il numero di esempi dev'essere aumentato per raggiungere la \textbf{validità statistica}.
+Si ritiene però opportuno mantenere un simile rapporto (25\%)
+tra gli esempi provenienti dagli esperti e quelli provenienti dai non esperti.
+Primo, perché tipicamente l'istruttore mostra il gesto
+molte meno volte di quante lo eseguano gli allievi.
+Secondo, perché in linea di principio
+c'è \emph{una} maniera di eseguire il gesto correttamente
+e molte di commettere errori.
+
+Per aumentare la mole di esempi e cercare di diffondere il sistema capillarmente,
+si dovrà acquisire dati da \textbf{differenti piattaforme} hardware.
+Questo rende necessari l'identificazione di tali dispositivi
+e la normalizzazione dei dati.
+
+Aumentare invece il numero di sensori è necessario a fornire la diagnostica,
+a stabilire cioè in quale istante o quale segmento del gesto è stato commesso l'errore
+(e magari suggerire come evitarlo).
+Va realizzato quindi un indumento apposito che vincoli strettamente i sensori all'arto.
+
+A seconda del campo in cui si vuole applicare il sistema,
+i dati potranno essere elaborati dal microcontrollore o dallo \textit{smartphone},
+se in locale; da un server se in remoto.
