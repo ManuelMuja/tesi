@@ -154,50 +154,8 @@ Il protocollo \iic{} mette quindi a disposizione
 \subsection{Trasmissione}
 \label{ssez:trasmissione}
 
-
-
-\subsection{Il convertitore I2C-USB}
-%  	Descrizione di quello utilizzato e confronto con gli altri.
-    Specifiche richieste:
-	\begin{itemize}
-	  \item Minimo due canali
-	\end{itemize}
-
-    \subsubsection{Due canali} \label{sssez:2canali}
-    La specifica deriva dalle osservazioni del paragrafo precedente:
-    si è scelto di usare quattro sensori con due soli indirizzi disponibili
-    quindi è necessario utilizzare due linee o un \textit{multiplexer}.
-    Il modulo di espansione \emph{\relsize{-.5}{FTDI-RPi}} mette a disposizione
-    tre porte \usb{} e due canali seriali multiuso
-    (a scelta tra \iic{}, {\relsize{-.5} UART} e seriale).
-    I produttori forniscono anche le librerie {\relsize{-.5} C++} per l'interfacciamento.
-    
-	\begin{table}
-		% Center the table
-		\begin{center}
-		% Title of the table
-		\caption{Confronto tra i convertitori \iic-\usb}
-		\label{tab:convertitori}
-		% Table itself: here we have two columns which are centered and have lines to the left, right and in the middle: |c|c|
-		\begin{tabular}{r c c}
-			% To create a horizontal line, type \hline
-%			\hline
-			% To end a column type &
-			% For a linebreak type \\
-Disp.        & Canali (n)  & Prezzo (\euro)\\
-			\hline
-200XD        &  4          & 8,72\\
-USB-ISS      &  1          & 24,89\\
-\textbf{Rpi} &  \textbf{2} & \textbf{34,00}\\
-			\hline
-		\end{tabular}
-		\end{center}
-	\end{table}
-
-% \input{rpihub.tex}
-
 \section{Il protocollo I2C} \label{sez:protocollo_i2c}
-{Nota: Tutta questa sezione fa riferimento alla guida~\cite{cit:primer}.}
+{Nota: Tutta questa sezione fa riferimento alla guida~\footnote{\cite{cit:primer}}.}
 
 \relsize{0}
 %	Descrizione del protocollo con le solite figure.
@@ -208,7 +166,7 @@ USB-ISS      &  1          & 24,89\\
     oppure a 3,4Mb/s (alta velocità).
     A livello fisico le linee \sda{} e \scl{} sono a \emph{collettore aperto}
     (\textit{open-drain}),
-    cioè possono essere forzate basse oppure \emph{lasciate} alte~\cite{cit:primer}.
+    cioè possono essere forzate basse oppure \emph{lasciate} alte~\footnote{\cite{cit:primer}}.
 	
 \begin{figure}[t]
 	\centering
@@ -290,10 +248,11 @@ con le implicazioni descritte più avanti nel testo.
   \item {tempo di stazionamento alto (frequenza di clock massima)}
 \end{itemize}
 Queste specifiche sono soddisfatte dai circuiti integrati commerciali
-ma non sono ovvie per le implementazioni software~\cite{cit:primer}.
+ma non sono ovvie per le implementazioni software~\footnote{\cite{cit:primer}}.
 
-% \subsubsection{Diagnostica}
-%   \input{diagnostica.tex}
+
+
+
 
 \subsection{Descrizione del sistema e diagnostica}
 In questa fase si utilizza un {\relsize{-.5}PC}
@@ -401,6 +360,48 @@ e della linea dati sempre alta
 riconducono a soglie di tensione non raggiunte o picchi,
 che portano all'errata interpretazione dei messaggi
 e alla perdita di sincronia.
+
+\subsection{Il convertitore I2C-USB}
+%  	Descrizione di quello utilizzato e confronto con gli altri.
+    Specifiche richieste:
+	\begin{itemize}
+	  \item Minimo due canali
+	\end{itemize}
+
+    \subsubsection{Due canali} \label{sssez:2canali}
+    La specifica deriva dalle osservazioni del paragrafo precedente:
+    si è scelto di usare quattro sensori con due soli indirizzi disponibili
+    quindi è necessario utilizzare due linee o un \textit{multiplexer}.
+    Il modulo di espansione \emph{\relsize{-.5}{FTDI-RPi}} mette a disposizione
+    tre porte \usb{} e due canali seriali multiuso
+    (a scelta tra \iic{}, {\relsize{-.5} UART} e seriale).
+    I produttori forniscono anche le librerie {\relsize{-.5} C++} per l'interfacciamento.
+    
+	\begin{table}
+		% Center the table
+		\begin{center}
+		% Title of the table
+		\caption{Confronto tra i convertitori \iic-\usb}
+		\label{tab:convertitori}
+		% Table itself: here we have two columns which are centered and have lines to the left, right and in the middle: |c|c|
+		\begin{tabular}{r c c}
+			% To create a horizontal line, type \hline
+%			\hline
+			% To end a column type &
+			% For a linebreak type \\
+Disp.        & Canali (n)  & Prezzo (\euro)\\
+			\hline
+200XD        &  4          & 8,72\\
+USB-ISS      &  1          & 24,89\\
+\textbf{Rpi} &  \textbf{2} & \textbf{34,00}\\
+			\hline
+		\end{tabular}
+		\end{center}
+	\end{table}
+
+% \input{rpihub.tex}
+
+
 % {Resta da verificare che questi dispositivi
 % non siano sensibili a combinazioni sbagliate di $R_S$ ed $R_P$
 % a causa di errate soglie di tensione,
